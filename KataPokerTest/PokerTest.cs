@@ -27,7 +27,10 @@ namespace KataPokerTest
 
 
         [TestCase("2H 3D 5S 9C 3D", 9)]
+        [TestCase("2H 3D 5S 9C JD", 11)]
+        [TestCase("2H 3D 5S 9C QD", 12)]
         [TestCase("2H 3D 5S 9C KD", 13)]
+        [TestCase("2H 3D 5S 9C AD", 14)]
         [Test]
         public void HighCardScore(string input, int expected)
         {
@@ -55,9 +58,11 @@ namespace KataPokerTest
                 string numberStr = s[0].ToString();
 
                 int score = 0;
-                if (numberStr == "K")
+                string english = "JQKA";
+                int idx = english.IndexOf(numberStr);
+                if ( idx!=-1)
                 {
-                    score = 13;
+                    score = 11 + idx;
                 }
                 else
                 {
