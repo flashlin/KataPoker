@@ -53,22 +53,12 @@ namespace KataPokerTest
         {
             var ss = cards.Split(' ');
             int maxScore = 0;
+            int score = 0;
             foreach (string s in ss)
             {
                 string numberStr = s[0].ToString();
 
-                int score = 0;
-                string english = "JQKA";
-                int idx = english.IndexOf(numberStr);
-                if ( idx!=-1)
-                {
-                    score = 11 + idx;
-                }
-                else
-                {
-                    score = int.Parse(numberStr);
-                }
-
+                score = GetCardNumber(numberStr);
 
                 if (maxScore < score)
                 {
@@ -76,6 +66,23 @@ namespace KataPokerTest
                 }
             }
             return maxScore;
+        }
+
+        private static int GetCardNumber(string numberStr)
+        {
+            int score;
+            string english = "JQKA";
+            int idx = english.IndexOf(numberStr);
+            if (idx != -1)
+            {
+                score = 11 + idx;
+            }
+            else
+            {
+                score = int.Parse(numberStr);
+            }
+
+            return score;
         }
     }
 }
