@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
@@ -23,6 +24,12 @@ namespace KataPokerTest
             var gameResult = game.Input("2H 2D 5S 9C KD", "2C 3H 4S 8C AH");
             Assert.AreEqual("Black wins. - with pair card: 2H 2D", gameResult);
         }
+
+        public void GetCardScore()
+        {
+            var game = new PokerGame();
+            game.GetCardsScore("");
+        }
     }
 
     public class PokerGame
@@ -32,6 +39,17 @@ namespace KataPokerTest
             if(blackCards == "2H 2D 5S 9C KD" && whiteCards == "2C 3H 4S 8C AH")
                 return "Black wins. - with pair card: 2H 2D";
             return "White wins. - with high card: Ace";
+        }
+
+        public int GetCardsScore(string cards)
+        {
+            var ss = cards.Split(' ');
+            int score = 0;
+            foreach (var s in ss)
+            {
+                score += int.Parse(s);
+            }
+            return score;
         }
     }
 }
