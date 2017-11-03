@@ -25,12 +25,14 @@ namespace KataPokerTest
             Assert.AreEqual("Black wins. - with pair card: 2H 2D", gameResult);
         }
 
+
+        [TestCase("2H 3D 5S 9C 3D", 9)]
         [Test]
-        public void GetCardScore()
+        public void HighCardScore(string input, int expected)
         {
             var game = new PokerGame();
-            int score = game.GetCardsScore("2H 3D 5S 9C 3D");
-            Assert.AreEqual(9, score);
+            int score = game.GetHighCardScore(input);
+            Assert.AreEqual(expected, score);
         }
     }
 
@@ -43,7 +45,7 @@ namespace KataPokerTest
             return "White wins. - with high card: Ace";
         }
 
-        public int GetCardsScore(string cards)
+        public int GetHighCardScore(string cards)
         {
             var ss = cards.Split(' ');
             int maxScore = 0;
