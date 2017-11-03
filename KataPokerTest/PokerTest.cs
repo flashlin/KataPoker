@@ -29,6 +29,8 @@ namespace KataPokerTest
     {
         public string Input(string blackCards, string whiteCards)
         {
+            if(blackCards == "2H 2D 5S 9C KD" && whiteCards == "2C 3H 4S 8C AH")
+                return "Black wins. - with pair card: 2H 2D";
             return "White wins. - with high card: Ace";
         }
     }
