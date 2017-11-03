@@ -27,6 +27,7 @@ namespace KataPokerTest
 
 
         [TestCase("2H 3D 5S 9C 3D", 9)]
+        [TestCase("2H 3D 5S 9C KD", 13)]
         [Test]
         public void HighCardScore(string input, int expected)
         {
@@ -51,8 +52,19 @@ namespace KataPokerTest
             int maxScore = 0;
             foreach (string s in ss)
             {
-                
-                var score = int.Parse(s[0].ToString());
+                string numberStr = s[0].ToString();
+
+                int score = 0;
+                if (numberStr == "K")
+                {
+                    score = 13;
+                }
+                else
+                {
+                    score = int.Parse(numberStr);
+                }
+
+
                 if (maxScore < score)
                 {
                     maxScore = score;
